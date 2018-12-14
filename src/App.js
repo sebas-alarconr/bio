@@ -1,7 +1,7 @@
 import { Route, Switch, BrowserRouter} from 'react-router-dom';
 import React, { Component } from 'react';
-import './App.css';
 import IndexPage from './pages/IndexPage';
+import Layout from './Layout';
 import ResumePage from './pages/ResumePage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -14,11 +14,13 @@ class App extends Component {
       <BrowserRouter
         basename={process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL}
       >
-        <Switch>
-          <Route exact path="/" component={IndexPage} />
-          <Route exact path="/resume" component={ResumePage} />
-          <Route component={NotFoundPage} />
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={IndexPage} />
+            <Route exact path="/resume" component={ResumePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Layout>
       </BrowserRouter>
     );
   }

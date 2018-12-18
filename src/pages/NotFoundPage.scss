@@ -1,0 +1,17 @@
+@import '../colors.scss';
+
+.notfoundpage {
+  background: url("/404.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  height: calc(100% - 74px);
+
+  &__textcontainer{
+    align-self: center;
+    background-color: #143850bd;
+    color: $main-light-gray;
+    margin: 20px;
+    padding: 20px;
+  }
+}

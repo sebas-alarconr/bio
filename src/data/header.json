@@ -1,0 +1,18 @@
+[
+  {
+    "label": "Me",
+    "route": "/"
+  },
+  {
+    "label": "Resume",
+    "route": "/resume"
+  },
+  {
+    "label": "Contact",
+    "route": "/contact"
+  },
+  {
+    "label": "Blog",
+    "route": "/blog"
+  }
+]

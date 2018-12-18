@@ -1,0 +1,27 @@
+@import '../colors.scss';
+
+.header {
+  padding: 1.5rem;
+  background-color: $main-dark-blue;
+
+  &__list {
+    display: inline;
+    list-style-type: none;
+
+    &item {
+      display: inline;
+      padding: .5rem 1rem;
+      font-family: 'Dosis', sans-serif;
+      font-weight: bold;
+
+      a {
+        color: $main-light-gray;
+
+        &:hover,
+        &:active {
+          color: $main-light-green;
+        }
+      }
+    }
+  }
+}

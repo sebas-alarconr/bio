@@ -1,0 +1,48 @@
+html, body, .app {
+  height:100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Economica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Dosis', sans-serif;
+}
+
+.app__content {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1em 40px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.Toastify {
+  &__toast {
+    &-body {
+      font-family: 'Economica', sans-serif;
+    }
+  }
+}

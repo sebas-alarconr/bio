@@ -1,12 +1,16 @@
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.min.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const AppClient = () => (
+  <Router basename={process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL}>
+    <App />
+  </Router>
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+ReactDOM.render(<AppClient />, document.getElementById('root'));
 serviceWorker.unregister();

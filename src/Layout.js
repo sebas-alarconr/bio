@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
+import './Layout.scss';
 
 class Layout extends Component {
   render() {
@@ -8,9 +9,7 @@ class Layout extends Component {
       <React.Fragment>
         <Header />
         <ToastContainer />
-        <article className="app-content">
-          {this.props.children}
-        </article>
+        {this.props.children}
       </React.Fragment>
     );
   }

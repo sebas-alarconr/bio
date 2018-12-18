@@ -1,0 +1,21 @@
+@import '../colors.scss';
+
+.icon {
+  margin:10px;
+
+  &--primary {
+    color: $main-dark-blue;
+
+    &:hover {
+      color: $main-light-green;
+    }
+  }
+
+  &--secondary {
+    color: $main-light-green;
+
+    &:hover {
+      color: $main-dark-blue;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.indexpage {
+  display: flex;
+  flex-direction: column;
+
+  &__imagecontainer {
+    align-self: center;
+    border-radius: 100%;
+    height: 300px;
+    margin: 40px;
+    min-width: 300px;
+    overflow: hidden;
+    width: 300px;
+
+    img {
+      height: 100%;
+      margin-left: -50px;
+    }
+  }
+}

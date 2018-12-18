@@ -1,17 +1,28 @@
-@import '../colors.scss';
+@import '../components/base.scss';
 
 .notfoundpage {
-  background: url("/404.jpg");
-  background-position: center;
-  background-size: cover;
   display: flex;
   height: calc(100% - 74px);
 
-  &__textcontainer{
+  &__textcontainer {
     align-self: center;
-    background-color: #143850bd;
+    background-color: $main-dark-blue-trasparent;
     color: $main-light-gray;
     margin: 20px;
     padding: 20px;
+    z-index: 1;
+  }
+
+  &__image {
+    height: calc(100% - 74px);
+    width: 100%;
+    position: absolute;
+  }
+
+  @include extra-small-down {
+    &__image {
+      width: 300%;
+      margin-left: -140%;
+    }
   }
 }

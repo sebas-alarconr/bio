@@ -8,7 +8,7 @@ class IndexPage extends Component {
     return (
       <article className="indexpage text-center app__content">
         <div className="indexpage__imagecontainer">
-          <img src="/bio_pic.jpg" alt="Personal" />
+          <img src={`${process.env.PUBLIC_URL}/bio_pic.jpg`} alt="Personal" />
         </div>
         <h1>
           Hi! I'm Sebas.

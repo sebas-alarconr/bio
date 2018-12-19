@@ -1,18 +1,20 @@
 @import './base.scss';
 
 .header {
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: $main-dark-blue;
 
   &__list {
-    display: inline;
+    display: flex;
+    flex-flow: row;
     list-style-type: none;
+    padding-left: 1rem;
 
     &item {
       display: inline;
-      padding: .5rem 1rem;
       font-family: 'Dosis', sans-serif;
       font-weight: bold;
+      padding: .5rem 1rem;
 
       a {
         color: $main-light-gray;
@@ -20,6 +22,42 @@
         &:hover,
         &:active {
           color: $main-light-green;
+        }
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__buttonmenu {
+    width: 20px;
+    height: 15px;
+  }
+
+  &__menuicon {
+    align-self: baseline;
+  }
+
+  @include small-down {
+    &__list {
+      flex-flow: column;
+      overflow: hidden;
+      max-height:0;
+      -webkit-transition: max-height 200ms ease-in;
+      -moz-transition: max-height 200ms ease-in;
+      -o-transition: max-height 200ms ease-in;
+      transition: max-height 200ms ease-in;
+    }
+
+    &__nav {
+      &--open {
+        .header{
+          &__list {
+            max-height: 170px;
+          }
         }
       }
     }

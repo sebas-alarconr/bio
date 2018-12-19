@@ -1,5 +1,37 @@
+// Extra small
+
 @mixin extra-small-down {
   @media all and (max-width: $extra-small-breakpoint-end) {
+    @content;
+  }
+}
+
+// Small
+
+@mixin small-down {
+  @media all and (max-width: $small-breakpoint-end) {
+    @content;
+  }
+}
+
+// Medium
+
+@mixin medium-down {
+  @media all and (max-width: $medium-breakpoint-end) {
+    @content;
+  }
+}
+
+@mixin medium-up {
+  @media all and (min-width: $medium-breakpoint-start) {
+    @content;
+  }
+}
+
+// Large
+
+@mixin large-up {
+  @media all and (min-width: $large-breakpoint-start) {
     @content;
   }
 }

@@ -1,3 +1,5 @@
+@import './components/base.scss';
+
 html, body, .app {
   height:100%;
 }
@@ -35,6 +37,10 @@ h6 {
   padding: 1em 40px;
 }
 
+.no-margin {
+  margin: 0;
+}
+
 .text-center {
   text-align: center;
 }
@@ -44,5 +50,23 @@ h6 {
     &-body {
       font-family: 'Economica', sans-serif;
     }
+  }
+}
+
+.hide-medium-down {
+  @include medium-down {
+    display: none;
+  }
+}
+
+.hide-large-up {
+  @include large-up {
+    display: none;
+  }
+}
+
+.hide-medium-up {
+  @include medium-up {
+    display: none;
   }
 }

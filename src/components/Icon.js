@@ -3,6 +3,7 @@ import './Icon.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+const PRIMARY = 'primary';
 const REGULAR = 'regular';
 const LIGHT = 'light';
 const BRAND = 'brand';
@@ -23,18 +24,39 @@ const x10 = '10x';
 class Icon extends Component {
   render = () => {
     return(
-      <i className={this.getClassname()} />
+      <React.Fragment>
+        <i className={this.getClass()} />
+        {this.renderAnimatedIcon()}
+      </React.Fragment>
     );
   }
 
-  getClassname = () => {
-    return classNames({
+  renderAnimatedIcon = () => {
+    let content;
+
+    if (this.props.animated) {
+      content = (<i className={this.getClass(true)} />);
+    }
+
+    return content;
+  }
+
+  getClass = (animated) => {
+    let classes = {
       "icon": true,
-      [this.getIconStyle()]: true,
-      [this.getIconName()]: true,
-      [`fa-${this.props.size}`]: true,
-      [`icon--${this.props.type}`]: true
-    });
+      "icon--animated": this.props.animated,
+      "icon__default": this.props.animated && !animated,
+      "icon__transform": this.props.animated && animated,
+      "show-animation": this.props.showSecondIcon
+    };
+
+    classes[this.getIconStyle()] = true;
+    classes[this.getIconName(animated)] = true;
+    classes[`fa-${this.props.size}`] = true;
+    classes[`icon--${this.props.type}`] = true;
+    classes[this.props.className] = this.props.className;
+
+    return classNames(classes);
   }
 
   getIconStyle = () => {
@@ -62,17 +84,22 @@ class Icon extends Component {
     return style;
   }
 
-  getIconName = () => {
-    return `fa-${this.props.name}`;
+  getIconName = (animated) => {
+    let name = animated ? this.props.secondIconName : this.props.name;
+
+    return `fa-${name}`;
   }
 }
 
 Icon.defaultProps = {
-  size: 'sm'
+  animated: false,
+  showSecondIcon: false,
+  size: 'sm',
+  type: PRIMARY
 }
 
 Icon.propTypes = {
-  style: PropTypes.oneOf([REGULAR, LIGHT, BRAND, SOLID]),
+  iconStyle: PropTypes.oneOf([REGULAR, LIGHT, BRAND, SOLID]),
   size: PropTypes.oneOf([XS, SM, LG, X2, X3, X4, X5, X6, X7, X8, X9, x10])
 }
 

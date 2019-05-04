@@ -1,15 +1,19 @@
-import App from './App';
+import { createHistory, LocationProvider } from '@reach/router';
+import createHashSource from 'hash-source';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-toastify/dist/ReactToastify.min.css';
+import App from './App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.min.css';
+
+const source = createHashSource();
+const history = createHistory(source)
 
 const AppClient = () => (
-  <Router basename={process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL}>
+  <LocationProvider history={history}>
     <App />
-  </Router>
+  </LocationProvider>
 );
 
 ReactDOM.render(<AppClient />, document.getElementById('root'));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import './Header.scss';
 import headerConfig from '../data/header';
 import Icon from './Icon';

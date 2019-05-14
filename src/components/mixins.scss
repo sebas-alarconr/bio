@@ -1,21 +1,30 @@
 // Extra small
-
 @mixin extra-small-down {
   @media all and (max-width: $extra-small-breakpoint-end) {
     @content;
   }
 }
 
-// Small
+@mixin extra-small-up {
+  @media all and (min-width: $extra-small-breakpoint-start) {
+    @content;
+  }
+}
 
+// Small
 @mixin small-down {
   @media all and (max-width: $small-breakpoint-end) {
     @content;
   }
 }
 
-// Medium
+@mixin small-up {
+  @media all and (max-width: $small-breakpoint-start) {
+    @content;
+  }
+}
 
+// Medium
 @mixin medium-down {
   @media all and (max-width: $medium-breakpoint-end) {
     @content;
@@ -29,9 +38,15 @@
 }
 
 // Large
-
 @mixin large-up {
   @media all and (min-width: $large-breakpoint-start) {
+    @content;
+  }
+}
+
+// Extra large
+@mixin extra-large-up {
+  @media all and (min-width: $extra-large-breakpoint-start) {
     @content;
   }
 }

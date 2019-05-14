@@ -1,0 +1,11 @@
+@import './base.scss';
+
+.navlink {
+  color: $main-light-gray;
+
+  &--active,
+  &:hover,
+  &:active {
+    color: $main-light-green;
+  }
+}

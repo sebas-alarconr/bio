@@ -22,14 +22,12 @@ const X9 = '9x';
 const x10 = '10x';
 
 class Icon extends Component {
-  render = () => {
-    return(
-      <React.Fragment>
-        <i className={this.getClass()} />
-        {this.renderAnimatedIcon()}
-      </React.Fragment>
-    );
-  }
+  render = () => (
+    <React.Fragment>
+      <i className={this.getClass()} />
+      {this.renderAnimatedIcon()}
+    </React.Fragment>
+  );
 
   renderAnimatedIcon = () => {
     let content;

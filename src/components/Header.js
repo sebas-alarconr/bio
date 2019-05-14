@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import NavLink from './NavLink';
 import './Header.scss';
-import headerConfig from '../data/header';
+import headerData from '../data/header';
 import Icon from './Icon';
 import Button from './Button';
 import classNames from 'classnames';
@@ -15,40 +15,39 @@ class Header extends Component {
     };
   }
 
-  render = () => {
-    return(
-      <header className="header">
-        <nav className={this.getNavClass()}>
-          <ul className="header__list no-margin">
-            {headerConfig.map(this.renderHeaderItem)}
-          </ul>
-          <div className="header__menuicon hide-medium-up">
-            <Button onClick={this.handleNavBarIconClick} className="header__buttonmenu">
-              <Icon
-                animated={true}
-                className="no-margin"
-                iconStyle="solid"
-                name="bars"
-                secondIconName="times"
-                showSecondIcon={this.state.opened}
-                size="lg"
-                type="tertiary" />
-            </Button>
-          </div>
-        </nav>
-      </header>
-    );
-  }
+  render = () => (
+    <header className="header">
+      <nav className={this.getNavClass()}>
+        <ul className="header__list no-margin">
+          {headerData.map(this.renderHeaderItem)}
+        </ul>
+        <div className="header__menuicon hide-medium-up">
+          <Button
+            className="header__buttonmenu"
+            onClick={this.handleNavBarIconClick}
+          >
+            <Icon
+              animated={true}
+              className="no-margin"
+              iconStyle="solid"
+              name="bars"
+              secondIconName="times"
+              showSecondIcon={this.state.opened}
+              size="lg"
+              type="tertiary" />
+          </Button>
+        </div>
+      </nav>
+    </header>
+  );
 
-  renderHeaderItem = (headerItem, key) => {
-    return (
-      <li className="header__listitem" key={key}>
-        <Link to={headerItem.route}>
-          {headerItem.label}
-        </Link>
-      </li>
-    )
-  }
+  renderHeaderItem = (headerItem, key) => (
+    <li className="header__listitem" key={key}>
+      <NavLink to={headerItem.route} onClick={this.handleLinkClick}>
+        {headerItem.label}
+      </NavLink>
+    </li>
+  );
 
   getNavClass = () => {
     let classes = {
@@ -65,6 +64,12 @@ class Header extends Component {
     });
 
     event.preventDefault();
+  }
+
+  handleLinkClick = () => {
+    this.setState({
+      opened: false
+    });
   }
 }
 

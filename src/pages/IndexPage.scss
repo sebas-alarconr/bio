@@ -1,17 +1,19 @@
-$width: 300px;
+@import '../components/base.scss';
 
-.indexpage {
+.index {
+  $image-container-size: 300px;
+
   display: flex;
   flex-direction: column;
 
   &__imagecontainer {
     align-self: center;
     border-radius: 100%;
-    height: $width;
+    height: $image-container-size;
     margin: 40px;
-    min-width: $width;
+    min-width: $image-container-size;
     overflow: hidden;
-    width: $width;
+    width: $image-container-size;
 
     img {
       height: 100%;

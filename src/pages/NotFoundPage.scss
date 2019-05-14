@@ -1,28 +1,19 @@
 @import '../components/base.scss';
 
-.notfoundpage {
-  display: flex;
-  height: calc(100% - 74px);
+.notfound {
+  height: 100%;
+  background: url('/404.png') 60% center/cover;
+
+  &__container {
+    display: flex;
+    height: 100%;
+  }
 
   &__textcontainer {
     align-self: center;
     background-color: $main-dark-blue-trasparent;
     color: $main-light-gray;
-    margin: 20px;
     padding: 20px;
     z-index: 1;
-  }
-
-  &__image {
-    height: calc(100% - 74px);
-    width: 100%;
-    position: absolute;
-  }
-
-  @include extra-small-down {
-    &__image {
-      width: 300%;
-      margin-left: -140%;
-    }
   }
 }

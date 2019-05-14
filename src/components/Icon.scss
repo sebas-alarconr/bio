@@ -28,9 +28,9 @@
   }
 
   &--animated {
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
 
     &.icon {
       &__default {
@@ -38,22 +38,22 @@
       }
 
       &__transform {
-        transition: opacity .3s, transform .3s;
-        transform: rotate(-180deg) scale(.5);
         opacity: 0;
+        transform: rotate(-180deg) scale(.5);
+        transition: opacity .3s, transform .3s;
       }
     }
 
     &.show-animation {
       &.icon {
         &__default {
-          transform: rotate(180deg) scale(.5);
           opacity: 0;
+          transform: rotate(180deg) scale(.5);
         }
 
         &__transform {
+          opacity: 1;
           transform: rotate(0deg) scale(1);
-        opacity: 1;
         }
       }
     }

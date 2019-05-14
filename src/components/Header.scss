@@ -1,35 +1,42 @@
 @import './base.scss';
 
 .header {
-  padding: 1rem;
+  padding: 16px 16px 20px;
   background-color: $main-dark-blue;
 
   &__list {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     list-style-type: none;
-    padding-left: 1rem;
+    overflow: hidden;
+    max-height:0;
+    padding-left: 0;
+    -webkit-transition: max-height 200ms ease-in;
+    -moz-transition: max-height 200ms ease-in;
+    -o-transition: max-height 200ms ease-in;
+    transition: max-height 200ms ease-in;
 
     &item {
       display: inline;
       font-family: 'Dosis', sans-serif;
       font-weight: bold;
       padding: .5rem 1rem;
-
-      a {
-        color: $main-light-gray;
-
-        &:hover,
-        &:active {
-          color: $main-light-green;
-        }
-      }
     }
   }
 
   &__nav {
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+    max-width: 700px;
+
+    &--open {
+      .header{
+        &__list {
+          max-height: 170px;
+        }
+      }
+    }
   }
 
   &__buttonmenu {
@@ -41,23 +48,16 @@
     align-self: baseline;
   }
 
-  @include small-down {
-    &__list {
-      flex-flow: column;
-      overflow: hidden;
-      max-height:0;
-      -webkit-transition: max-height 200ms ease-in;
-      -moz-transition: max-height 200ms ease-in;
-      -o-transition: max-height 200ms ease-in;
-      transition: max-height 200ms ease-in;
-    }
+  @include medium-up {
+    padding: 1rem 40px;
 
-    &__nav {
-      &--open {
-        .header{
-          &__list {
-            max-height: 170px;
-          }
+    &__list {
+      flex-flow: row;
+      max-height: none;
+
+      &item {
+        &:first-of-type {
+          padding-left: 0;
         }
       }
     }

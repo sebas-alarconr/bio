@@ -31,9 +31,17 @@ h6 {
   font-family: 'Dosis', sans-serif;
 }
 
+main {
+  height: calc(100% - 59px);
+
+  > div[role='group'] {
+    height: 100%;
+  }
+}
+
 .app__content {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
   padding: 1em 40px;
 }
 
@@ -47,26 +55,24 @@ h6 {
 
 .Toastify {
   &__toast {
+    &-container {
+      top: 75px;
+    }
+
     &-body {
       font-family: 'Economica', sans-serif;
     }
   }
 }
 
-.hide-medium-down {
-  @include medium-down {
-    display: none;
-  }
-}
-
-.hide-large-up {
-  @include large-up {
-    display: none;
-  }
-}
-
 .hide-medium-up {
   @include medium-up {
     display: none;
+  }
+}
+
+@include medium-up {
+  main {
+    height: calc(100% - 74px);
   }
 }

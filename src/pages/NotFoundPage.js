@@ -11,7 +11,11 @@ class NotFoundPage extends Component {
   }
 
   render = () => (
-    <article className="notfound">
+    <article
+        className="notfound"
+        style={{
+            background: `url(${process.env.PUBLIC_URL}/404.png) 60% center/cover`
+        }}>
       <div className="notfound__container app__content">
         <div className="notfound__textcontainer">
           <h1>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import './IndexPage.scss';
 import Icon from '../components/Icon';
 
 class IndexPage extends Component {

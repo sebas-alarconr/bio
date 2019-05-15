@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NavLink from './NavLink';
-import './Header.scss';
 import headerData from '../data/header';
 import Icon from './Icon';
 import Button from './Button';

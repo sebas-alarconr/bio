@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import './NotFoundPage.scss';
 
 class NotFoundPage extends Component {
   componentDidMount = () => {
+    toast.error("Oops! This page seems that doesn't exist");
+  }
+
+  componentDidUpdate = () => {
     toast.error("Oops! This page seems that doesn't exist");
   }
 

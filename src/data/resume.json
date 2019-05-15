@@ -20,19 +20,24 @@
   ],
   "education": [
     {
-      "company": "",
-      "title": "",
-      "start": "",
-      "end": "",
+      "company": "National University of Colombia",
+      "title": "Systems and Computational Engineering",
+      "start": "2019-02",
+      "end": "2015-12",
       "extras": [""]
     }
   ],
   "community": [
     {
-      "role": "",
+      "role": "Speaker",
       "description": "",
-      "dates": [""],
-      "events": [""]
+      "dates": ["2018-06"],
+      "events": [
+        {
+          "title": "Globant Development Week Bogota: React Workshop. ",
+          "link": "https://www.devweekbog.com/bogotaJune2018/index.html"
+        }
+      ]
     }
   ]
 }

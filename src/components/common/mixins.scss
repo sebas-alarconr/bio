@@ -1,3 +1,6 @@
+// Mixins
+
+// Visibility mixins
 // Extra small
 @mixin extra-small-down {
   @media all and (max-width: $extra-small-breakpoint-end) {

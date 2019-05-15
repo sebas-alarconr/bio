@@ -1,0 +1,89 @@
+// Styles for Resume page.
+
+.resume {
+  &__experience,
+  &__education,
+  &__community {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+
+    &-item {
+      padding-bottom: 20px;
+
+      &-title {
+        align-items: center;
+        display: flex;
+        position: relative;
+
+        h3 {
+          margin: 0;
+        }
+      }
+
+      &-content {
+        margin-left: 0;
+      }
+
+      &-extra {
+        word-break: break-word;
+      }
+    }
+  }
+
+  &__list {
+    &-bullet {
+      border-radius: 50%;
+      display: none;
+
+      &--outer {
+        background: $main-dark-blue;
+        border: $main-white 15px solid;
+        height: 40px;
+        left: -88px;
+        position: absolute;
+        width: 40px;
+      }
+
+      &--inner {
+        background: $main-dark-blue;
+        border: $main-white 10px solid;
+        height: 10px;
+        margin: 5px auto;
+        width: 10px;
+      }
+    }
+  }
+
+  @include medium-up {
+    &__experience,
+    &__education,
+    &__community {
+      &-item {
+        border-left: 5px solid $main-dark-blue;
+        margin-left: 20px;
+        padding-bottom: 40px;
+
+        &-title {
+          margin-left: 50px;
+        }
+
+        &-content {
+          margin-left: 50px;
+        }
+      }
+    }
+
+    &__list {
+      &-bullet {
+        &--outer {
+          display: inline-block;
+        }
+
+        &--inner {
+          display: block;
+        }
+      }
+    }
+  }
+}

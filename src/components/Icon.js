@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Icon.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 

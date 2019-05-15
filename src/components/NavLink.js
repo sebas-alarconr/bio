@@ -1,6 +1,5 @@
 import { Link } from "@reach/router";
 import React from 'react';
-import './NavLink.scss';
 import classNames from 'classnames';
 
 const isActive = ({ isCurrent }) => {

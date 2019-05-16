@@ -4,6 +4,9 @@ import Loading from '../components/Loading';
 import _ from 'lodash';
 import jsPDF from 'jspdf';
 import encodedFonts from '../data/encoded_fonts';
+import ResumePDF from '../components/ResumePDF';
+import { renderToString } from 'react-dom/server';
+import html2canvas from "html2canvas";
 
 class ResumePage extends Component {
   constructor(props) {
@@ -13,6 +16,8 @@ class ResumePage extends Component {
       resumeData: {},
       loading: true
     }
+
+    this.yPosition = 0;
   }
 
   componentDidMount = () => {
@@ -125,12 +130,14 @@ class ResumePage extends Component {
   )
 
   generatePdf = () => {
-    const pdf = new jsPDF();
+    window.html2canvas = html2canvas;
+    const pdf = new jsPDF('p', 'mm', 'a4');
     const { resumeData } = this.state;
     const margin = 15;
     const width = 210;
     const maxWidth = width - 2 * margin;
-    let yPosition = margin;
+    this.yPosition = margin;
+    const pageHeight= pdf.internal.pageSize.height;
 
     // Adding fonts
     pdf.addFileToVFS('Dosis-Bold-bold.ttf', encodedFonts.dosis_bold);
@@ -141,108 +148,149 @@ class ResumePage extends Component {
     // Starts pdf
     pdf.setFontSize(20);
     pdf.setFont('Dosis-Bold', 'bold');
-    pdf.text(15, yPosition, 'Sebastián Alarcón Ramos');
-    yPosition += 75
+    pdf.text(15, this.yPosition, 'Sebastián Alarcón Ramos');
+    this.yPosition += 15
 
     // Overview section
     pdf.setFontSize(18);
-    pdf.text(15, yPosition, 'Overview');
+    pdf.text(15, this.yPosition, 'Overview');
     pdf.setFont('Economica', 'normal');
     pdf.setFontSize(16);
-    yPosition += 10;
-    const overviewLines = pdf.splitTextToSize(resumeData.overview, maxWidth);
-    pdf.text(15, yPosition, overviewLines);
-    yPosition += 15
+    this.yPosition += 10;
+
+    pdf.text(15, this.yPosition, resumeData.overview, {maxWidth: maxWidth});
+    this.calculateNextYPosition(pdf, resumeData.overview, maxWidth);
+    this.yPosition += 10
+    this.checkNewPage(pdf, pageHeight, margin);
 
     // Experience section
     pdf.setFontSize(18);
     pdf.setFont('Dosis-Bold', 'bold');
-    pdf.text(15, yPosition, 'Experience')
-    yPosition += 15;
+    pdf.text(15, this.yPosition, 'Experience')
+    this.yPosition += 15;
+    this.checkNewPage(pdf, pageHeight, margin);
 
     // Each Experience item
-    _.get(resumeData, 'experience', []).map(experienceItem => {
+    _.get(resumeData, 'experience', []).forEach(experienceItem => {
       pdf.setFontSize(16);
       pdf.setFont('Dosis-Bold', 'bold');
-      pdf.setLineWidth(1);
-      pdf.setDrawColor(20, 56, 80);
-      pdf.setFillColor(255, 255, 255);
-      pdf.circle(18, yPosition-2, 3, 'FD');
-      pdf.setFillColor(20, 56, 80);
-      pdf.circle(18, yPosition-2, 0.5, 'FD');
-      pdf.text(25, yPosition, experienceItem.company);
-      yPosition += 8;
+      this.drawnMultiCircle(pdf);
+      pdf.text(25, this.yPosition, experienceItem.company);
+      this.yPosition += 8;
       pdf.setFont('Economica', 'normal');
       pdf.setFontSize(14);
-      pdf.text(25, yPosition, experienceItem.title);
-      yPosition += 6;
-      pdf.text(25, yPosition, `${experienceItem.start} - ${experienceItem.end}`);
-      yPosition += 6;
-      pdf.text(25, yPosition, _.get(experienceItem, 'technologies', []).join(', '));
-      yPosition += 10;
+      pdf.text(25, this.yPosition, experienceItem.title);
+      this.yPosition += 6;
+      this.checkNewPage(pdf, pageHeight, margin);
+      pdf.text(25, this.yPosition, `${experienceItem.start} - ${experienceItem.end}`);
+      this.yPosition += 6;
+      this.checkNewPage(pdf, pageHeight, margin);
+      pdf.text(25, this.yPosition, _.get(experienceItem, 'technologies', []).join(', '));
+      this.yPosition += 10;
+      this.checkNewPage(pdf, pageHeight, margin);
 
       _.get(experienceItem, 'responsabilities', []).map(responsability => {
-        pdf.circle(27, yPosition-1.5, 0.5, 'FD');
-        pdf.text(30, yPosition, responsability);
-        yPosition += 6;
+        pdf.circle(27, this.yPosition-1.5, 0.5, 'FD');
+        this.checkNewPage(pdf, pageHeight, margin);
+        pdf.text(30, this.yPosition, responsability, {maxWidth: maxWidth-15});
+        this.calculateNextYPosition(pdf, responsability, maxWidth);
+        this.yPosition += 3;
       });
 
-      yPosition += 9;
+      this.yPosition += 9;
+      this.checkNewPage(pdf, pageHeight, margin);
     });
 
     // Education section
     pdf.setFont('Dosis-Bold', 'bold');
     pdf.setFontSize(18);
-    pdf.text(15, yPosition, 'Education');
-    yPosition += 15;
+    pdf.text(15, this.yPosition, 'Education');
+    this.yPosition += 15;
+    this.checkNewPage(pdf, pageHeight, margin);
 
     _.get(resumeData, 'education', []).map(educationItem => {
       pdf.setFontSize(16);
       pdf.setFont('Dosis-Bold', 'bold');
-      pdf.setLineWidth(1);
-      pdf.setDrawColor(20, 56, 80);
-      pdf.setFillColor(255, 255, 255);
-      pdf.circle(18, yPosition-2, 3, 'FD');
-      pdf.setFillColor(20, 56, 80);
-      pdf.circle(18, yPosition-2, 0.5, 'FD');
-      pdf.text(25, yPosition, educationItem.institution);
-      yPosition += 8;
+      this.drawnMultiCircle(pdf);
+      pdf.text(25, this.yPosition, educationItem.institution);
+      this.yPosition += 8;
+      this.checkNewPage(pdf, pageHeight, margin);
       pdf.setFont('Economica', 'normal');
       pdf.setFontSize(14);
-      pdf.text(25, yPosition, educationItem.title);
-      yPosition += 6;
-      pdf.text(25, yPosition, `${educationItem.start} - ${educationItem.end}`);
-      yPosition += 10;
+      pdf.text(25, this.yPosition, educationItem.title);
+      this.yPosition += 6;
+      this.checkNewPage(pdf, pageHeight, margin);
+      pdf.text(25, this.yPosition, `${educationItem.start} - ${educationItem.end}`);
+      this.yPosition += 10;
+      this.checkNewPage(pdf, pageHeight, margin);
 
       _.get(educationItem, 'extras', []).map(extra => {
-        pdf.circle(27, yPosition-1.5, 0.5, 'FD');
-        pdf.text(30, yPosition, extra);
-        yPosition += 6;
+        pdf.circle(27, this.yPosition-1.5, 0.5, 'FD');
+        pdf.text(30, this.yPosition, extra, {maxWidth: maxWidth-15});
+        this.calculateNextYPosition(pdf, extra, maxWidth);
+        this.yPosition += 6;
+        this.checkNewPage(pdf, pageHeight, margin);
       });
 
-      yPosition += 9;
+      this.yPosition += 9;
+      this.checkNewPage(pdf, pageHeight, margin);
     });
 
 
     // Community section
     pdf.setFont('Dosis-Bold', 'bold');
     pdf.setFontSize(18);
-    pdf.text(15, yPosition, 'Community');
-    yPosition += 15;
+    pdf.text(15, this.yPosition, 'Community');
+    this.yPosition += 15;
+    this.checkNewPage(pdf, pageHeight, margin);
 
     _.get(resumeData, 'community', []).map(communityItem => {
       pdf.setFontSize(16);
       pdf.setFont('Dosis-Bold', 'bold');
-      pdf.setLineWidth(1);
-      pdf.setDrawColor(20, 56, 80);
-      pdf.setFillColor(255, 255, 255);
-      pdf.circle(18, yPosition-2, 3, 'FD');
-      pdf.setFillColor(20, 56, 80);
-      pdf.circle(18, yPosition-2, 0.5, 'FD');
-      pdf.text(25, yPosition, communityItem.role);
+      this.drawnMultiCircle(pdf);
+      pdf.text(25, this.yPosition, communityItem.role);
+      this.yPosition += 6;
+      this.checkNewPage(pdf, pageHeight, margin);
+      pdf.setFont('Economica', 'normal');
+      pdf.setFontSize(14);
+      pdf.text(25, this.yPosition, _.get(communityItem, 'dates', []).join(' - '));
+      this.yPosition += 10;
+      this.checkNewPage(pdf, pageHeight, margin);
+
+      _.get(communityItem, 'events', []).map(event => {
+        pdf.circle(27, this.yPosition-1.5, 0.5, 'FD');
+        pdf.text(30, this.yPosition, `${event.title} ${event.link.text}`, {maxWidth: maxWidth-15});
+        // this.calculateNextYPosition(pdf, event, maxWidth);
+        this.yPosition += 6;
+        this.checkNewPage(pdf, pageHeight, margin);
+      });
     })
 
     pdf.save("pdf");
+  }
+
+  checkNewPage = (pdf, pageHeight, margin) => {
+    if (this.yPosition >=  pageHeight) {
+      pdf.addPage();
+      this.yPosition = margin;
+    }
+  }
+
+  calculateNextYPosition = (pdf, text, maxWidth) => {
+    const splittedText = pdf.splitTextToSize(text, maxWidth);
+    const lineHeight = pdf.getLineHeight(text) / pdf.internal.scaleFactor
+    const lines = splittedText.length  // splitted text is a string array
+    const blockHeight = lines * lineHeight
+    this.yPosition += blockHeight;
+  }
+
+  drawnMultiCircle = (pdf) => {
+    pdf.setLineWidth(1);
+    pdf.setDrawColor(20, 56, 80);
+    pdf.setFillColor(255, 255, 255);
+    pdf.circle(18, this.yPosition-2, 3, 'FD');
+    pdf.setFillColor(20, 56, 80);
+    pdf.circle(18, this.yPosition-2, 0.5, 'FD');
   }
 }
 

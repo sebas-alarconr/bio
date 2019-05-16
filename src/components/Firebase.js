@@ -16,11 +16,11 @@ class Firebase {
     app.initializeApp(config)
 
     this.db = app.firestore();
-    this.bioId = 'dqqrhVhL4q05XfXYhP9R'
+    this.resumeId = 'dqqrhVhL4q05XfXYhP9R'
 	}
 
-	async getBio() {
-		return await this.db.doc(`bios/${this.bioId}`).get();
+	async getResume() {
+		return await this.db.doc(`bios/${this.resumeId}`).get();
 	}
 }
 

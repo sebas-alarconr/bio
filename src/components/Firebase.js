@@ -2,13 +2,13 @@ import app from 'firebase/app'
 import 'firebase/firebase-firestore'
 
 const config = {
-  apiKey: "AIzaSyBSFtPxgJS8USawtuUnHwVHH0ttP3V7Nx8",
-  authDomain: "my-personal-bio.firebaseapp.com",
-  databaseURL: "https://my-personal-bio.firebaseio.com",
-  projectId: "my-personal-bio",
-  storageBucket: "my-personal-bio.appspot.com",
-  messagingSenderId: "770715025261",
-  appId: "1:770715025261:web:8aa851a469fa962f"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
 class Firebase {

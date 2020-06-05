@@ -5,9 +5,9 @@ import NavLink from 'components/NavLink';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 
-import styles from './header.module.scss';
-
 import headerData from 'data/header';
+
+import styles from './header.module.scss';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -20,26 +20,20 @@ const Header = () => {
     </li>
   );
 
-  const getNavClass = () => classNames(
-    styles.nav,
-    open && styles.open
-  );
+  const getNavClass = () => classNames(styles.nav, open && styles.open);
 
-  const handleNavBarIconClick = (event) => setOpen(!open);
+  const handleNavBarIconClick = () => setOpen(!open);
 
   const handleLinkClick = () => setOpen(false);
 
-  return(
+  return (
     <header className={styles.header}>
       <nav className={getNavClass()}>
         <ul className={`${styles.list} no-margin`}>
           {headerData.map(renderHeaderItem)}
         </ul>
         <div className={`${styles.menuIcon} hide-medium-up`}>
-          <Button
-            className={styles.buttonMenu}
-            onClick={handleNavBarIconClick}
-          >
+          <Button className={styles.buttonMenu} onClick={handleNavBarIconClick}>
             <Icon
               animated
               className="no-margin"
@@ -48,12 +42,13 @@ const Header = () => {
               secondIconName="times"
               showSecondIcon={open}
               size="lg"
-              type="tertiary" />
+              type="tertiary"
+            />
           </Button>
         </div>
       </nav>
     </header>
   );
-}
+};
 
 export default Header;

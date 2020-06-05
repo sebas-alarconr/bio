@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import styles from './icon.module.scss';
 
@@ -8,7 +8,7 @@ const PRIMARY = 'primary';
 const REGULAR = 'regular';
 const LIGHT = 'light';
 const BRAND = 'brand';
-const SOLID = 'solid'
+const SOLID = 'solid';
 const XS = 'xs';
 const SM = 'sm';
 const LG = 'lg';
@@ -24,26 +24,27 @@ const x10 = '10x';
 
 const Icon = ({
   animated,
+  className,
+  iconStyle,
+  name,
+  secondIconName,
   showSecondIcon,
   size,
   type,
-  className,
-  iconStyle,
-  secondIconName,
-  name,
 }) => {
-  const getClass = (animatedIcon) => classNames(
-    styles.icon,
-    styles[type],
-    getIconStyle(),
-    `fa-${size}`,
-    `fa-${animatedIcon ? secondIconName : name}`,
-    animated && styles.animated,
-    animated && !animatedIcon && styles.default,
-    animated && animatedIcon && styles.transform,
-    showSecondIcon && styles.showAnimation,
-    className
-  );
+  const getClass = animatedIcon =>
+    classNames(
+      styles.icon,
+      styles[type],
+      getIconStyle(),
+      `fa-${size}`,
+      `fa-${animatedIcon ? secondIconName : name}`,
+      animated && styles.animated,
+      animated && !animatedIcon && styles.default,
+      animated && animatedIcon && styles.transform,
+      showSecondIcon && styles.showAnimation,
+      className
+    );
 
   const getIconStyle = () => {
     const prefix = 'fa';
@@ -56,30 +57,38 @@ const Icon = ({
       case BRAND:
         return `${prefix}b`;
       case SOLID:
-        return `${prefix}s`
+        return `${prefix}s`;
       default:
         return '';
     }
-  }
+  };
 
   return (
-    <React.Fragment>
+    <>
       <i className={getClass()} />
       {animated && <i className={getClass(true)} />}
-    </React.Fragment>
+    </>
   );
-}
+};
 
 Icon.defaultProps = {
   animated: false,
+  className: '',
+  secondIconName: '',
   showSecondIcon: false,
   size: 'sm',
-  type: PRIMARY
-}
+  type: PRIMARY,
+};
 
 Icon.propTypes = {
-  iconStyle: PropTypes.oneOf([REGULAR, LIGHT, BRAND, SOLID]),
-  size: PropTypes.oneOf([XS, SM, LG, X2, X3, X4, X5, X6, X7, X8, X9, x10])
-}
+  animated: PropTypes.bool,
+  className: PropTypes.string,
+  iconStyle: PropTypes.oneOf([REGULAR, LIGHT, BRAND, SOLID]).isRequired,
+  name: PropTypes.string.isRequired,
+  secondIconName: PropTypes.string,
+  showSecondIcon: PropTypes.bool,
+  size: PropTypes.oneOf([XS, SM, LG, X2, X3, X4, X5, X6, X7, X8, X9, x10]),
+  type: PropTypes.string,
+};
 
 export default Icon;

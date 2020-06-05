@@ -1,5 +1,6 @@
 @import 'styles/mixins';
 @import 'styles/variables';
+
 @value colors: '../../styles/colors.scss';
 @value elephant, jungle-mist, porcelain from colors;
 
@@ -16,7 +17,7 @@
   display: flex;
   flex-flow: column;
   list-style-type: none;
-  max-height:0;
+  max-height: 0;
   overflow: hidden;
   padding-left: 0;
   transition: max-height 200ms ease-in;
@@ -26,7 +27,7 @@
   display: inline;
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .nav {

@@ -1,6 +1,8 @@
 // Normalize styles
 
-html, body, .app {
+html,
+body,
+.app {
   height: 100%;
 }
 
@@ -23,7 +25,12 @@ a {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
     monospace;
 }
 

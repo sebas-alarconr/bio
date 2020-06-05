@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import firebase from '../../components/Firebase';
-import Loading from '../../components/Loading';
 import _ from 'lodash';
+import firebase from 'components/Firebase';
+import Loading from 'components/Loader';
 
-class ResumePage extends Component {
+class Resume extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       resumeData: {},
-      loading: true
-    }
+      loading: true,
+    };
   }
 
   componentDidMount = () => {
-    firebase.getResume()
-        .then(resume => this.setState({
-          resumeData: resume.data(),
-          loading: false
-        }));
-  }
+    firebase.getResume().then(resume =>
+      this.setState({
+        resumeData: resume.data(),
+        loading: false,
+      })
+    );
+  };
 
   render = () => {
     const { resumeData, loading } = this.state;
@@ -45,81 +46,83 @@ class ResumePage extends Component {
           {_.get(resumeData, 'community', []).map(this.renderCommunity)}
         </ul>
       </article>
-    )
-  }
+    );
+  };
 
   renderExperience = (experienceItem, key) => (
     <li className="resume__experience-item" key={key}>
       <div className="resume__experience-item-title">
         <div className="resume__list-bullet resume__list-bullet--outer">
-          <div className="resume__list-bullet resume__list-bullet--inner"></div>
+          <div className="resume__list-bullet resume__list-bullet--inner" />
         </div>
-        <h3>
-          {experienceItem.company}
-        </h3>
+        <h3>{experienceItem.company}</h3>
       </div>
       <div className="resume__experience-item-content">
         <p>{experienceItem.title}</p>
-        <p>{experienceItem.start} - {experienceItem.end}</p>
+        <p>
+          {experienceItem.start}
+          {' '}
+          -
+          {experienceItem.end}
+        </p>
         <p>{_.get(experienceItem, 'technologies', []).join(', ')}</p>
         <ul>
-          {_.get(experienceItem, 'responsabilities', []).map(this.renderExtraInfo)}
+          {_.get(experienceItem, 'responsabilities', []).map(
+            this.renderExtraInfo
+          )}
         </ul>
       </div>
     </li>
-  )
+  );
 
   renderEducation = (educationItem, key) => (
     <li className="resume__education-item" key={key}>
       <div className="resume__education-item-title">
         <div className="resume__list-bullet resume__list-bullet--outer">
-          <div className="resume__list-bullet resume__list-bullet--inner"></div>
+          <div className="resume__list-bullet resume__list-bullet--inner" />
         </div>
-        <h3>
-          {educationItem.institution}
-        </h3>
+        <h3>{educationItem.institution}</h3>
       </div>
       <div className="resume__education-item-content">
         <p>{educationItem.title}</p>
-        <p>{educationItem.start} - {educationItem.end}</p>
-        <ul>
-          {_.get(educationItem, 'extras', []).map(this.renderExtraInfo)}
-        </ul>
+        <p>
+          {educationItem.start}
+          {' '}
+          -
+          {educationItem.end}
+        </p>
+        <ul>{_.get(educationItem, 'extras', []).map(this.renderExtraInfo)}</ul>
       </div>
     </li>
-  )
+  );
 
   renderCommunity = (communityItem, key) => (
     <li className="resume__community-item" key={key}>
       <div className="resume__community-item-title">
         <div className="resume__list-bullet resume__list-bullet--outer">
-          <div className="resume__list-bullet resume__list-bullet--inner"></div>
+          <div className="resume__list-bullet resume__list-bullet--inner" />
         </div>
-        <h3>
-          {communityItem.role}
-        </h3>
+        <h3>{communityItem.role}</h3>
       </div>
       <div className="resume__community-item-content">
         <p>{communityItem.description}</p>
         <p>{_.get(communityItem, 'dates', []).join(' - ')}</p>
-        <ul>
-          {_.get(communityItem, 'events', []).map(this.renderEvents)}
-        </ul>
+        <ul>{_.get(communityItem, 'events', []).map(this.renderEvents)}</ul>
       </div>
     </li>
-  )
+  );
 
-  renderExtraInfo = (extraItem, key) => (
-    <li key={key}>
-      {extraItem}
-    </li>
-  )
+  renderExtraInfo = (extraItem, key) => <li key={key}>{extraItem}</li>;
 
   renderEvents = (event, key) => (
     <li className="resume__community-item-extra" key={key}>
-      {event.title} <a href={event.link.url} target="_blank" rel="noopener noreferrer">{event.link.text}</a>
+      {event.title}
+      {' '}
+      <a href={event.link.url} target="_blank" rel="noopener noreferrer">
+        {event.link.text}
+      </a>
     </li>
-  )
+  );
 }
 
-export default ResumePage;
+export default Resume;

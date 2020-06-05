@@ -8,7 +8,7 @@ import './index.scss';
 import * as serviceWorker from './serviceWorker';
 
 const source = createHashSource();
-const history = createHistory(source)
+const history = createHistory(source);
 
 const AppClient = () => (
   <LocationProvider history={history}>

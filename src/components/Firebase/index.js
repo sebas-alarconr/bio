@@ -1,5 +1,5 @@
-import app from 'firebase/app'
-import 'firebase/firebase-firestore'
+import app from 'firebase/app';
+import 'firebase/firebase-firestore';
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -9,19 +9,19 @@ const config = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-}
+};
 
 class Firebase {
-	constructor() {
-    app.initializeApp(config)
+  constructor() {
+    app.initializeApp(config);
 
     this.db = app.firestore();
-    this.resumeId = 'dqqrhVhL4q05XfXYhP9R'
-	}
+    this.resumeId = 'dqqrhVhL4q05XfXYhP9R';
+  }
 
-	async getResume() {
-		return await this.db.doc(`bios/${this.resumeId}`).get();
-	}
+  async getResume() {
+    return await this.db.doc(`bios/${this.resumeId}`).get();
+  }
 }
 
-export default new Firebase()
+export default new Firebase();

@@ -1,0 +1,67 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+@value colors: '../../styles/colors.scss';
+@value elephant, jungle-mist, porcelain from colors;
+
+.header {
+  background-color: elephant;
+  left: 0;
+  padding: 16px 16px 20px;
+  position: fixed;
+  right: 0;
+  z-index: 1;
+}
+
+.list {
+  display: flex;
+  flex-flow: column;
+  list-style-type: none;
+  max-height:0;
+  overflow: hidden;
+  padding-left: 0;
+  transition: max-height 200ms ease-in;
+}
+
+.listItem {
+  display: inline;
+  font-family: 'Dosis', sans-serif;
+  font-weight: bold;
+  padding: .5rem 1rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &.open {
+    .list {
+      max-height: 170px;
+    }
+  }
+}
+
+.menuIcon {
+  align-self: baseline;
+}
+
+.buttonMenu {
+  height: 15px;
+  width: 20px;
+}
+
+@include medium-up {
+  .header {
+    padding: 1rem 40px;
+  }
+
+  .list {
+    flex-flow: row;
+    max-height: none;
+  }
+
+  .listItem {
+    &:first-of-type {
+      padding-left: 0;
+    }
+  }
+}

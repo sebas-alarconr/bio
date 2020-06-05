@@ -1,0 +1,23 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.imageContainer {
+  $image-container-size: 300px;
+
+  align-self: center;
+  border-radius: 100%;
+  height: $image-container-size;
+  margin: 40px;
+  min-width: $image-container-size;
+  overflow: hidden;
+  text-align: center;
+  width: $image-container-size;
+
+  img {
+    height: 100%;
+    margin-left: -50px;
+  }
+}

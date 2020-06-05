@@ -1,10 +1,10 @@
 import { Router } from '@reach/router';
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import Header from './components/Header';
-import IndexPage from './pages/IndexPage';
-import NotFoundPage from './pages/NotFoundPage';
-import ResumePage from './pages/ResumePage';
+import Header from 'components/Header';
+import IndexPage from './pages/Home';
+import NotFoundPage from './pages/NotFound';
+import ResumePage from './pages/Resume';
 
 class App extends Component {
   render = () => (

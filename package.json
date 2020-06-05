@@ -36,6 +36,8 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
+    "husky": ">=4",
+    "lint-staged": ">=10",
     "prettier": "2.0.5"
   },
   "homepage": "http://sebas-alarconr.github.io/bio",
@@ -84,5 +86,13 @@
     "presets": [
       "react-app"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }

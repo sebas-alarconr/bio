@@ -1,21 +1,19 @@
 import React from 'react';
 import Icon from 'components/Icon';
 
-import styles from './styles.module.scss';
+import styles from './home.module.scss';
 
 const Home = () => (
-  <section className={`app_content ${styles.mainContainer}`}>
+  <section className={styles.mainContainer}>
     <div className={styles.imageContainer}>
       <img src={`${process.env.PUBLIC_URL}/bio_pic.png`} alt="Personal" />
     </div>
     <h1>Hi! I&apos;m Sebas.</h1>
-    <section>
+    <div>
       <p>
-        My name is Sebastian Alarcon. I&apos;m
-        {' '}
-        {new Date(new Date() - new Date('1992-03-28')).getFullYear() - 1970}
-        {' '}
-        years old and I was born in Bogota, Colombia.
+        {`My name is Sebastian Alarcon. I'm ${
+          new Date(new Date() - new Date('1992-03-28')).getFullYear() - 1970
+        } years old and I was born in Bogota, Colombia.`}
       </p>
       <a
         href="https://github.com/sebas-alarconr"
@@ -48,7 +46,7 @@ const Home = () => (
           type="secondary"
         />
       </a>
-    </section>
+    </div>
   </section>
 );
 

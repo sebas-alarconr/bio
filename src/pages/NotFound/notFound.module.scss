@@ -1,0 +1,20 @@
+@value colors: '../../styles/colors.scss';
+@value elephant, white, porcelain from colors;
+
+.mainSection {
+  height: 100%;
+}
+
+.mainContainer {
+  display: flex;
+  height: 100%;
+  padding: 0 40px;
+}
+
+.textContainer {
+  align-self: center;
+  background-color: elephant;
+  color: porcelain;
+  padding: 20px;
+  z-index: 1;
+}

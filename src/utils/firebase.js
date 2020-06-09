@@ -20,7 +20,9 @@ class Firebase {
   }
 
   async getResume() {
-    return await this.db.doc(`bios/${this.resumeId}`).get();
+    const document = await this.db.doc(`bios/${this.resumeId}`);
+
+    return document.get();
   }
 }
 

@@ -29,6 +29,9 @@ module.exports = {
     'no-return-await': [1],
     'react/prop-types': [2, { ignore: ['children'] }],
     'react/button-has-type': [0],
-    'arrow-body-style': [2, 'as-needed']
+    'arrow-body-style': [2, 'as-needed'],
+    'eol-last': 2,
+    'react/no-array-index-key': 1,
+    'import/prefer-default-export': 1,
   }
 };

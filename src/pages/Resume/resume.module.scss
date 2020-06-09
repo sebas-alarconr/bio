@@ -1,0 +1,77 @@
+@import 'styles/mixins';
+@import 'styles/variables';
+
+@value colors: '../../styles/colors.scss';
+@value elephant, white, porcelain from colors;
+
+.contentWrapper {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.listItem {
+  padding-bottom: 20px;
+
+  @include medium-up {
+    border-left: 5px solid elephant;
+    margin-left: 20px;
+    padding-bottom: 40px;
+  }
+}
+
+.listItemTitle {
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  h3 {
+    margin: 0;
+  }
+
+  @include medium-up {
+    margin-left: 50px;
+  }
+}
+
+.listBullet {
+  border-radius: 50%;
+  display: none;
+
+  &.inner {
+    background: elephant;
+    border: white 10px solid;
+    height: 10px;
+    margin: 5px auto;
+    width: 10px;
+
+    @include medium-up {
+      display: block;
+    }
+  }
+
+  &.outer {
+    background: elephant;
+    border: white 15px solid;
+    height: 40px;
+    left: -87px;
+    position: absolute;
+    width: 40px;
+
+    @include medium-up {
+      display: inline-block;
+    }
+  }
+}
+
+.content {
+  margin-left: 0;
+
+  @include medium-up {
+    margin-left: 50px;
+  }
+}
+
+.extra {
+  word-break: break-word;
+}

@@ -1,30 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
-class NotFound extends Component {
-  componentDidMount = () => {
-    toast.error("Oops! This page seems that doesn't exist");
-  };
+import styles from './notFound.module.scss';
 
-  componentDidUpdate = () => {
+const NotFound = ({ location }) => {
+  useEffect(() => {
     toast.error("Oops! This page seems that doesn't exist");
-  };
+  }, [location]);
 
-  render = () => (
-    <article
-      className="notfound"
+  return (
+    <section
+      className={styles.mainSection}
       style={{
         background: `url(${process.env.PUBLIC_URL}/404.png) 60% center/cover`,
       }}
     >
-      <div className="notfound__container app__content">
-        <div className="notfound__textcontainer">
+      <div className={styles.mainContainer}>
+        <div className={styles.textContainer}>
           <h1>404! Page Not Found.</h1>
           <h2>We were searching your page but we couldn&apos;t find it.</h2>
         </div>
       </div>
-    </article>
+    </section>
   );
-}
+};
+
+NotFound.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
+};
+
+NotFound.defaultProps = {
+  location: {
+    pathname: '',
+  },
+};
 
 export default NotFound;

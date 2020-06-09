@@ -44,18 +44,9 @@ h6 {
 }
 
 main {
-  height: calc(100% - 59px);
-  padding-top: 59px;
-
-  > div[role='group'] {
-    height: 100%;
+  > div[tabindex="-1"] {
+    height: inherit;
   }
-}
-
-.app__content {
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 1em 40px;
 }
 
 .text-center {
@@ -77,12 +68,5 @@ main {
 .hide-medium-up {
   @include medium-up {
     display: none;
-  }
-}
-
-@include medium-up {
-  main {
-    height: calc(100% - 74px);
-    padding-top: 74px;
   }
 }

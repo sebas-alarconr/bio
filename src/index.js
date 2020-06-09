@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.min.css';
 import App from './App';
-import './index.scss';
+import 'styles/base.scss';
 import * as serviceWorker from './serviceWorker';
 
 const source = createHashSource();

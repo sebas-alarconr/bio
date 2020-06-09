@@ -27,7 +27,7 @@ const Header = () => {
   const handleLinkClick = () => setOpen(false);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.mainContainer}>
       <nav className={getNavClass()}>
         <ul className={`${styles.list} no-margin`}>
           {headerData.map(renderHeaderItem)}
